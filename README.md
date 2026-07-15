@@ -103,10 +103,16 @@ cd Credit_agent
 Создание тестовых файлов на локальной машине (для проверки через Swagger): Создаем директорию mkdir test_files
 
 ## Для Windows (cmd):
-echo Тестовый договор > test_files\договор.pdf echo Тестовая спецификация > test_files\спецификация.pdf echo Тестовый счёт > test_files\счёт.pdf echo Тестовый акт > test_files\акт.pdf
+echo Тестовый договор > test_files\договор.pdf 
+echo Тестовая спецификация > test_files\спецификация.pdf 
+echo Тестовый счёт > test_files\счёт.pdf 
+echo Тестовый акт > test_files\акт.pdf
 
 ## Для Linux / macOS (bash):
-echo "Тестовый договор" > test_files/договор.pdf echo "Тестовая спецификация" > test_files/спецификация.pdf echo "Тестовый счёт" > test_files/счёт.pdf echo "Тестовый акт" > test_files/акт.pdf
+echo "Тестовый договор" > test_files/договор.pdf 
+echo "Тестовая спецификация" > test_files/спецификация.pdf
+echo "Тестовый счёт" > test_files/счёт.pdf
+echo "Тестовый акт" > test_files/акт.pdf
 
 ## 2. Взаимодействие с API Через интерфейс Swagger (рекомендуемый):
    Перейдите на http://localhost:8000/docs. Раскройте эндпоинт POST /api/checks. Нажмите кнопку "Try it out".Укажите параметры:program: выберите federal или regional.files: нажмите "Choose Files" и выберите сгенерированные файлы из папки test_files. Нажмите "Execute". Поведение системы при проверке: Загружены все 4 обязательных файла  ➔ статус approved.Пропущен хотя бы один файл  ➔ статус rejected.Загружен файл с неопределенным типом  ➔ статус check_in_progress. 
