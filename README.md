@@ -37,6 +37,8 @@
 | **Контейнеризация** | Docker / Docker Compose |
 | **Тестирование** | Pytest 7.4.3 |
 
+text
+
 ---
 
 ## Структура проекта
@@ -99,21 +101,29 @@ text
 ```bash
 git clone https://github.com/Akim-kachaliev/Credit_agent.git
 cd Credit_agent
-Шаг 2. Настройка окружения
+
+---
+
+**Шаг 2. Настройка окружения**
 
 bash
 cp .env.example .env
-Шаг 3. Сборка и запуск контейнеров
+
+
+**Шаг 3. Сборка и запуск контейнеров**
 
 bash
 docker-compose up --build
-Шаг 4. Проверка работоспособности
+
+
+**Шаг 4. Проверка работоспособности**
 
 Что проверяем	Адрес в браузере
 Интерактивная документация (Swagger)	http://localhost:8000/docs
 Альтернативная документация (ReDoc)	http://localhost:8000/redoc
 Проверка статуса (Healthcheck)	http://localhost:8000/health
-Инструкции по работе с проектом
+
+**Инструкции по работе с проектом**
 1. Тестирование
 Запуск тестов:
 
@@ -137,6 +147,7 @@ echo "Тестовый договор" > test_files/договор.pdf
 echo "Тестовая спецификация" > test_files/спецификация.pdf
 echo "Тестовый счёт" > test_files/счёт.pdf
 echo "Тестовый акт" > test_files/акт.pdf
+
 2. Взаимодействие с API
 Через Swagger (рекомендуется):
 
@@ -173,6 +184,7 @@ curl -X POST "http://localhost:8000/api/checks/" \
 
 text
 http://localhost:8000/api/checks/
+
 3. Работа с миграциями базы данных (Alembic)
 Действие	Команда
 Создать миграцию	docker-compose exec app alembic revision --autogenerate -m "Описание"
@@ -180,6 +192,8 @@ http://localhost:8000/api/checks/
 Откатить миграцию	docker-compose exec app alembic downgrade -1
 Проверить версию	docker-compose exec app alembic current
 История миграций	docker-compose exec app alembic history
+
+
 4. Управление Docker-окружением
 Остановка контейнеров:
 
