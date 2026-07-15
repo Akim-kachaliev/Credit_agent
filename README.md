@@ -23,7 +23,14 @@
 
 | Технология |
 |------------|
-| **Python 3.11** | | **FastAPI** | | **PostgreSQL** | | **SQLAlchemy** | | **Alembic** | | **Pydantic** | | **Docker** | | **Pytest** |
+| **Python 3.11** | 
+| **FastAPI** | 
+| **PostgreSQL** | 
+| **SQLAlchemy** | 
+| **Alembic** | 
+| **Pydantic** | 
+| **Docker** | 
+| **Pytest** |
 
 ---
 
