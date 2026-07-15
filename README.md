@@ -1,5 +1,3 @@
-# Credit_agent
-
 # Credit Document Checker API
 
 API сервис для автоматической проверки пакетов документов по кредитным программам.
