@@ -92,7 +92,9 @@ cd Credit_agent
 ## Шаг 4. Проверка работоспособности
 После успешного запуска сервисы будут доступны по следующим адресам: 
 Что проверяем: 
-Адрес в браузере Интерактивная документация (Swagger)http://localhost:8000/docsАльтернативная документация (ReDoc)http://localhost:8000/redocПроверка статуса (Healthcheck)http://localhost:8000/health
+Адрес в браузере Интерактивная документация (Swagger) http://localhost:8000/docs 
+Альтернативная документация (ReDoc) http://localhost:8000/redoc     
+Проверка статуса (Healthcheck) http://localhost:8000/health
 
 ### Инструкции по работе с проектом
 
