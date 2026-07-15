@@ -33,54 +33,54 @@
 * **Тестирование:** Pytest
 
 ---
-
 Credit_agent/
 │
-├── app/ # Основной код приложения
-│ ├── routers/ # API Эндпоинты
-│ │ ├── checks.py # Роуты для проверок
-│ │ └── init.py
-│ ├── services/ # Бизнес-логика
-│ │ ├── check_service.py # Оркестрация процесса проверки
-│ │ ├── validation_service.py # Непосредственная валидация
-│ │ └── init.py
-│ ├── utils/ # Вспомогательные утилиты
-│ │ ├── file_utils.py # Работа с файлами
-│ │ └── init.py
-│ ├── database.py # Настройка подключения к БД
-│ ├── main.py # Точка входа в приложение
-│ ├── models.py # Описание таблиц SQLAlchemy
-│ ├── schemas.py # Схемы валидации Pydantic
-│ └── init.py
+├── app/                                    # Основной код приложения
+│   ├── routers/                            # API Эндпоинты
+│   │   ├── checks.py                      # Роуты для проверок
+│   │   └── __init__.py
+│   ├── services/                           # Бизнес-логика
+│   │   ├── check_service.py               # Оркестрация процесса проверки
+│   │   ├── validation_service.py          # Непосредственная валидация документов
+│   │   └── __init__.py
+│   ├── utils/                              # Вспомогательные утилиты
+│   │   ├── file_utils.py                  # Работа с файлами и именами
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── database.py                         # Настройка подключения к БД
+│   ├── main.py                             # Точка входа в приложение
+│   ├── models.py                           # Описание таблиц SQLAlchemy
+│   └── schemas.py                          # Схемы валидации Pydantic
 │
-├── tests/ # Автотесты
-│ ├── test_api.py # Тестирование API эндпоинтов
-│ ├── test_validation.py # Тестирование логики валидации
-│ └── init.py
+├── tests/                                  # Автотесты
+│   ├── __init__.py
+│   ├── test_api.py                         # Тестирование API эндпоинтов
+│   └── test_validation.py                  # Тестирование логики валидации
 │
-├── migrations/ # Миграции базы данных (Alembic)
-│ ├── versions/
-│ ├── env.py
-│ └── script.py.mako
+├── migrations/                             # Миграции базы данных (Alembic)
+│   ├── versions/                           # Файлы миграций
+│   ├── __init__.py
+│   ├── env.py                              # Конфигурация Alembic
+│   └── script.py.mako                      # Шаблон для создания миграций
 │
-├── test_files/ # Шаблоны файлов для ручной проверки
-│ ├── акт.pdf
-│ ├── договор.pdf
-│ ├── спецификация.pdf
-│ └── счёт.pdf
+├── test_files/                             # Тестовые файлы для ручной проверки
+│   ├── акт.pdf
+│   ├── договор.pdf
+│   ├── спецификация.pdf
+│   └── счёт.pdf
 │
-├── .env.example # Пример конфигурационного файла
-├── .gitignore # Исключения для Git
-├── alembic.ini # Конфигурация Alembic
-├── docker-compose.yml # Сценарий Docker Compose
-├── Dockerfile # Инструкции сборки контейнера
-├── requirements.txt # Зависимости проекта
-└── README.md # Документация проекта
+├── .env.example                            # Пример конфигурационного файла
+├── .gitignore                              # Исключения для Git
+├── alembic.ini                             # Конфигурация Alembic
+├── docker-compose.yml                      # Сценарий Docker Compose
+├── Dockerfile                              # Инструкции сборки контейнера
+├── requirements.txt                        # Зависимости проекта
+└── README.md                               # Документация проекта
 
 ---
 
-## Как запустить проект 
-### Запуск через Docker
+### Как запустить проект 
+## Запуск через Docker
 На вашем компьютере должны быть установлены Docker Desktop и Git.
 ## Шаг 1. Клонирование репозитория
 Откройте терминал и выполните команды: git clone https://github.com/Akim-kachaliev/Credit_agent.git
@@ -113,13 +113,15 @@ echo "Тестовый счёт" > test_files/счёт.pdf
 echo "Тестовый акт" > test_files/акт.pdf
 
 ## 2. Взаимодействие с API Через интерфейс Swagger (рекомендуемый):
-   Перейдите на http://localhost:8000/docs. Раскройте эндпоинт POST /api/checks. Нажмите кнопку "Try it out".Укажите параметры:program: выберите federal или regional.files: нажмите "Choose Files" и выберите сгенерированные файлы из папки test_files.Нажмите "Execute".Поведение системы при проверке:Загружены все 4 обязательных файла  ➔ статус approved.Пропущен хотя бы один файл  ➔ статус rejected.Загружен файл с неопределенным типом  ➔ статус check_in_progress.Проверка через консоль (сurl):Bashcurl -X POST "http://localhost:8000/api/checks/" \
+   Перейдите на http://localhost:8000/docs. Раскройте эндпоинт POST /api/checks. Нажмите кнопку "Try it out".Укажите параметры:program: выберите federal или regional.files: нажмите "Choose Files" и выберите сгенерированные файлы из папки test_files. Нажмите "Execute". Поведение системы при проверке: Загружены все 4 обязательных файла  ➔ статус approved.Пропущен хотя бы один файл  ➔ статус rejected.Загружен файл с неопределенным типом  ➔ статус check_in_progress. 
+
+### Проверка через консоль (сurl):curl -X POST "http://localhost:8000/api/checks/" \
   -F "program=federal" \
   -F "files=@test_files/договор.pdf" \
   -F "files=@test_files/спецификация.pdf" \
   -F "files=@test_files/счёт.pdf" \
   -F "files=@test_files/акт.pdf"
-Просмотр истории проверок: Вы можете получить список всех ранее выполненных проверок в формате JSON:http://localhost:8000/api/checks/Работа с миграциями базы данных (Alembic)Все команды выполняются внутри запущенного контейнера приложения: 
+Просмотр истории проверок: Вы можете получить список всех ранее выполненных проверок в формате JSON: http://localhost:8000/api/checks/Работа с миграциями базы данных (Alembic). Все команды выполняются внутри запущенного контейнера приложения: 
 ## Создать автоматическую миграцию (на основе изменений в models.py): 
 docker-compose exec app alembic revision --autogenerate -m "Описание изменений"
 ## Применить все миграции (обновить БД до последней версии): 
@@ -130,14 +132,14 @@ docker-compose exec app alembic downgrade -1
 docker-compose exec app alembic current
 ## Посмотреть историю миграций: 
 docker-compose exec app alembic history
-## Остановка контейнеров: 
-Для остановки нажмите Ctrl + C в окне запущенного процесса или выполните в соседнем терминале:
+### Остановка контейнеров: 
+## Для остановки нажмите Ctrl + C в окне запущенного процесса или выполните в соседнем терминале:
 docker-compose down
-Полная очистка (с удалением данных БД): 
+## Полная очистка (с удалением данных БД): 
 docker-compose down -v
-Пересборка и чистый запуск: 
+## Пересборка и чистый запуск: 
 docker-compose up --build
-Проверка состояния БД через CLI:
+## Проверка состояния БД через CLI:
 Если вам нужно заглянуть внутрь базы данных напрямую:
 ## 1. Входим в контейнер базы данных PostgreSQL**
 docker-compose exec db psql -U user -d credit_db
