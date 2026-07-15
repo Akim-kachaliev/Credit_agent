@@ -78,38 +78,38 @@ Credit_agent/
 ├── Dockerfile                          # Инструкции сборки контейнера
 ├── requirements.txt                    # Зависимости проекта
 └── README.md                           # Документация проекта
-
 ---
 
-
-**Запуск через Docker**
-Пререквизиты: На вашем компьютере должны быть установлены Docker Desktop и Git.
-**Шаг 1.** Клонирование репозиторияОткройте терминал и выполните команды:
-git clone https://github.com/Akim-kachaliev/Credit_agent.git
+## Как запустить проект 
+### Запуск через Docker
+На вашем компьютере должны быть установлены Docker Desktop и Git.
+## Шаг 1. Клонирование репозитория
+Откройте терминал и выполните команды: git clone https://github.com/Akim-kachaliev/Credit_agent.git
 cd Credit_agent
-**Шаг 2.** Настройка окруженияСоздайте локальный файл конфигурации .env на основе шаблона:Bashcp .env.example .env
-**Шаг 3.** Сборка и запуск контейнеровЗапустите проект в фоновом режиме:Bashdocker-compose up --build
-**Шаг 4.** Проверка работоспособности
+## Шаг 2. Настройка окружения
+Создайте локальный файл конфигурации .env на основе шаблона: cp .env.example .env
+## Шаг 3. Сборка и запуск контейнеров
+Запустите проект в фоновом режиме: docker-compose up --build
+## Шаг 4. Проверка работоспособности
 После успешного запуска сервисы будут доступны по следующим адресам: Что проверяемАдрес в браузереИнтерактивная документация (Swagger)http://localhost:8000/docsАльтернативная документация (ReDoc)http://localhost:8000/redocПроверка статуса (Healthcheck)http://localhost:8000/healthИнструкции по работе с проектом
 
-1. ТестированиеЗапуск автоматических тестов (Pytest) внутри контейнера:
-   docker-compose exec app pytest tests/ -v
-Создание тестовых файлов на локальной машине (для проверки через Swagger):
-Создаем директорию mkdir test_files
+## 1. Тестирование
+Запуск автоматических тестов (Pytest) внутри контейнера: docker-compose exec app pytest tests/ -v
+Создание тестовых файлов на локальной машине (для проверки через Swagger): Создаем директорию mkdir test_files
 
-**Для Windows (cmd):**
+## Для Windows (cmd):
 echo Тестовый договор > test_files\договор.pdf
 echo Тестовая спецификация > test_files\спецификация.pdf
 echo Тестовый счёт > test_files\счёт.pdf
 echo Тестовый акт > test_files\акт.pdf
 
-**Для Linux / macOS (bash):**
+## Для Linux / macOS (bash):
 echo "Тестовый договор" > test_files/договор.pdf
 echo "Тестовая спецификация" > test_files/спецификация.pdf
 echo "Тестовый счёт" > test_files/счёт.pdf
 echo "Тестовый акт" > test_files/акт.pdf
 
-2. Взаимодействие с API Через интерфейс Swagger (рекомендуемый):
+## 2. Взаимодействие с API Через интерфейс Swagger (рекомендуемый):
    Перейдите на http://localhost:8000/docs. Раскройте эндпоинт POST /api/checks.Нажмите кнопку "Try it out".Укажите параметры:program: выберите federal или regional.files: нажмите "Choose Files" и выберите сгенерированные файлы из папки test_files.Нажмите "Execute".Поведение системы при проверке:Загружены все 4 обязательных файла  ➔ статус approved.Пропущен хотя бы один файл  ➔ статус rejected.Загружен файл с неопределенным типом  ➔ статус check_in_progress.Проверка через консоль (сurl):Bashcurl -X POST "http://localhost:8000/api/checks/" \
   -F "program=federal" \
   -F "files=@test_files/договор.pdf" \
@@ -121,18 +121,18 @@ echo "Тестовый акт" > test_files/акт.pdf
 Откатить последнюю миграцию: docker-compose exec app alembic downgrade -1
 Посмотреть текущую версию схемы БД: docker-compose exec app alembic current
 Посмотреть историю миграций: docker-compose exec app alembic history
-Управление Docker-окружением Остановка контейнеров:Для остановки нажмите Ctrl + C в окне запущенного процесса или выполните в соседнем терминале:Bashdocker-compose down
+Управление Docker-окружением Остановка контейнеров: Для остановки нажмите Ctrl + C в окне запущенного процесса или выполните в соседнем терминале:Bashdocker-compose down
 Полная очистка (с удалением данных БД): docker-compose down -v
 Пересборка и чистый запуск: docker-compose up --build
 Проверка состояния БД через CLI:Если вам нужно заглянуть внутрь базы данных напрямую:Bash# 
-**1. Входим в контейнер базы данных PostgreSQL**
+## 1. Входим в контейнер базы данных PostgreSQL**
 docker-compose exec db psql -U user -d credit_db
 
-**2. Посмотреть список таблиц (внутри psql)**
+## 2. Посмотреть список таблиц (внутри psql)**
 \dt
 
-**3. Выбрать все записи проверок**
+## 3. Выбрать все записи проверок**
 SELECT * FROM checks;
 
-**4. Выйти из psql**
+## 4. Выйти из psql**
 \q
