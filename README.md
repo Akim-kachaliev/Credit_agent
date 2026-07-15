@@ -100,7 +100,7 @@ Credit_agent/
 
 ## Быстрый старт
 
-### Пререквизиты
+### Что должно быть установлено
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Git](https://git-scm.com/)
@@ -276,7 +276,3 @@ SELECT * FROM checks;
 ```
 
 ---
-
-## Лицензия
-
-Проект разработан в рамках тестового задания.
