@@ -257,7 +257,7 @@ SECRET_KEY=your-secret-key-here
 
 ---
 
-## Проверка состояния БД
+## Проверка состояния 
 
 ```bash
 # Подключение к PostgreSQL
